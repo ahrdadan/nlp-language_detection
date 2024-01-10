@@ -59,7 +59,7 @@ from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
 import matplotlib.pyplot as plt
 
 # Read Dataset
-df = pd.read_csv('https://github.com/ahrdadan/nlp-language_detection/Language%20Detection.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/ahrdadan/nlp-language_detection/main/Language%20Detection.csv')
 
 # Preprocessing
 df = df.dropna(axis=0)
@@ -132,6 +132,25 @@ history = model.fit(train_padded, label_train,
                     validation_data=(test_padded, label_test),
                     verbose=1,
                     callbacks=[callbacks])
+
+
+#plot accuracy
+plt.plot(history.history['accuracy'], label='Training')
+plt.plot(history.history['val_accuracy'], label='Validation')
+plt.title('Plot Accuracy')
+plt.ylabel('Accuracy')
+plt.xlabel('Epoch')
+plt.legend(loc="lower right")
+plt.show()
+
+#plot loss
+plt.plot(history.history['loss'], label='Training')
+plt.plot(history.history['val_loss'], label='Validation')
+plt.title('Plot Loss')
+plt.ylabel('Loss')
+plt.xlabel('Epoch')
+plt.legend(loc="upper right")
+plt.show()
 
 """# Result
 Dengan NLP pada deteksi bahasa dari bahasa berikut ini:
